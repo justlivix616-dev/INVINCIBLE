@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INVINCIBLE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Oswald:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <audio id="bgMusic" loop >
+        <source src="Invincible Main Theme _ EPIC VERSION.mp4" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <div class="audio-controls">
+        <button id="playBtn" class="audio-btn">PLAY MUSIC</button>
+        <button id="muteBtn" class="audio-btn">MUTE</button>
+    </div>
+
+    <nav>
+        <div class="dropdown">
+            <button class="dropbtn">CHARACTERS <span>▼</span></button>
+            <div class="dropdown-content">
+                <a href="#heroes">THE HEROES</a>
+                <a href="#">VILTRUM EMPIRE</a>
+                <a href="https://www.amazon.com/INVINCIBLE-SEASON-1/dp/B08WJN83XZ" target="_blank">LATEST EPISODES</a>
+            </div>
+        </div>
+        <div style="margin-left: auto; font-family: 'Bangers'; color: var(--yellow); font-size: clamp(14px, 3vw, 22px); letter-spacing: 1px;">S4 STATUS: ACTIVE</div>
+    </nav>
+
+    <section class="hero">
+        <h1>INVINCIBLE</h1>
+        <p style="font-size: clamp(16px, 3vw, 24px); font-weight: bold; background: var(--blood); padding: 5px 20px; transform: skew(-10deg);"> POWER. RESPONSIBILITY.</p>
+    </section>
+
+    <section class="section" id="heroes">
+        <h2 style="font-size: clamp(40px, 8vw, 70px); text-align: center; margin-bottom: 40px;">DATABASE</h2>
+        <div class="grid">
+            <div class="card-box char-mark"><div class="card"><div class="front"><h2>INVINCIBLE</h2></div><div class="back"><h3>MARK GRAYSON</h3><p>Half-Viltrumite, total hero. Capable of flight and super strength.</p></div></div></div>
+            <div class="card-box char-nolan"><div class="card"><div class="front"><h2>OMNI-MAN</h2></div><div class="back"><h3>NOLAN GRAYSON</h3><p>A cold-blooded conqueror from Viltrum. Earth's greatest betrayal.</p></div></div></div>
+            <div class="card-box char-oliver"><div class="card"><div class="front"><h2>OLIVER</h2></div><div class="back"><h3>OLIVER GRAYSON</h3><p>Youngest son of the Grayson family.</p></div></div></div>
+            <div class="card-box char-allen"><div class="card"><div class="front"><h2>ALLEN THE ALIEN</h2></div><div class="back"><h3>ALLEN THE ALIEN</h3><p>Alien from the planet Zod.</p></div></div></div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-logo">INVINCIBLE</div>
+        <p style="opacity: 0.6; font-size: 14px;">© 2026 FAN PROJECT. ALL RIGHTS RESERVED.</p>
+    </footer>
+
+    <script>
+        // MUSIC LOGIC
+        const music = document.getElementById('bgMusic');
+        const playBtn = document.getElementById('playBtn');
+        const muteBtn = document.getElementById('muteBtn');
+
+        playBtn.addEventListener('click', () => {
+            if (music.paused) {
+                music.play();
+                playBtn.innerText = "PAUSE";
+                playBtn.classList.add('active');
+            } else {
+                music.pause();
+                playBtn.innerText = "PLAY MUSIC";
+                playBtn.classList.remove('active');
+            }
+        });
+
+        muteBtn.addEventListener('click', () => {
+            music.muted = !music.muted;
+            muteBtn.innerText = music.muted ? "UNMUTE" : "MUTE";
+            muteBtn.classList.toggle('active');
+        });
+
+        // SCROLL REVEAL LOGIC
+        function reveal() {
+            const reveals = document.querySelectorAll(".card-box");
+            reveals.forEach(el => {
+                const elementTop = el.getBoundingClientRect().top;
+                if (elementTop < window.innerHeight - 100) {
+                    el.classList.add("reveal");
+                }
+            });
+        }
+        window.addEventListener("scroll", reveal);
+        window.addEventListener("load", reveal);
+    </script>
+</body>
+</html>

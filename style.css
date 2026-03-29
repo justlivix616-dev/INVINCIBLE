@@ -1,0 +1,164 @@
+:root {
+            --yellow: #FFD700;
+            --blue: #2A5494;
+            --dark: #050a12;
+            --blood: #ce1212;
+            --black: #000000;
+            --white: #ffffff;
+            --border: 6px solid #000;
+        }
+
+        * { box-sizing: border-box; scroll-behavior: smooth; -webkit-tap-highlight-color: transparent; }
+
+        body {
+            background-color: var(--dark);
+            color: var(--white);
+            font-family: 'Oswald', sans-serif;
+            margin: 0;
+            overflow-x: hidden;
+            border: 10px solid var(--black);
+        }
+
+        /* AUDIO PLAYER UI */
+        .audio-controls {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            z-index: 3000;
+            background: var(--yellow);
+            border: 4px solid var(--black);
+            padding: 10px;
+            display: flex;
+            gap: 10px;
+            box-shadow: 8px 8px 0px var(--black);
+            transform: rotate(-2deg);
+        }
+
+        .audio-btn {
+            background: var(--black);
+            color: var(--yellow);
+            border: none;
+            font-family: 'Bangers';
+            font-size: 18px;
+            cursor: pointer;
+            padding: 8px 15px;
+            transition: 0.2s;
+        }
+
+        .audio-btn:hover {
+            background: var(--blue);
+            color: var(--white);
+        }
+
+        .audio-btn.active {
+            background: var(--blood);
+            color: var(--white);
+        }
+
+        /* NAVBAR */
+        nav {
+            background: #111;
+            border-bottom: 5px solid var(--yellow);
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            position: fixed;
+            width: 100%;
+            height: 70px;
+            top: 0;
+            z-index: 2000;
+        }
+
+        .dropdown { position: relative; height: 100%; display: flex; align-items: center; }
+        .dropbtn {
+            background: none; border: none; color: var(--yellow);
+            font-family: 'Bangers'; font-size: clamp(20px, 9vw, 26px); cursor: pointer; padding: 0px 0px;
+        }
+        .dropdown-content {
+            display: none; position: absolute; top: 70px; left: 0;
+            background: #111; min-width: 220px; border: 4px solid var(--yellow);
+        }
+        .dropdown-content a {
+            color: white; padding: 15px; text-decoration: none; display: block;
+            font-weight: bold; border-bottom: 1px solid #333; transition: 0.3s;
+        }
+        .dropdown-content a:hover { background: var(--blue); padding-left: 25px; }
+        .dropdown:hover .dropdown-content { display: block; }
+
+        /* HERO SECTION */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.4), var(--dark)), 
+                        url('https://images8.alphacoders.com/114/1144047.jpg') center/cover fixed;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            clip-path: polygon(0 0, 100% 0, 100% 95%, 0% 100%);
+            padding: 20px;
+        }
+
+        .hero h1 {
+            font-size: clamp(50px, 12vw, 150px);
+            color: var(--yellow);
+            margin: 0;
+            text-shadow: 8px 8px 0px var(--black);
+            -webkit-text-stroke: 2px var(--black);
+            animation: titleFloat 3s ease-in-out infinite;
+        }
+        @keyframes titleFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+
+        /* GRID SYSTEM */
+        .section { padding: 60px 5%; position: relative; max-width: 1400px; margin: 0 auto; }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .card-box { perspective: 1000px; height: 480px; opacity: 0; transform: translateY(50px); transition: 0.8s ease-out; }
+        .card-box.reveal { opacity: 1; transform: translateY(0); }
+
+        .card {
+            width: 100%; height: 100%;
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-style: preserve-3d;
+            border: var(--border);
+            cursor: pointer;
+        }
+        
+        .card-box:hover .card, .card-box:active .card { transform: rotateY(180deg); }
+
+        .front, .back {
+            position: absolute; width: 100%; height: 100%;
+            backface-visibility: hidden; display: flex;
+            flex-direction: column; justify-content: flex-end; padding: 25px;
+        }
+
+        .front { background-size: cover; background-position: center; }
+        .front::after { content: ''; position: absolute; inset: 0; background: linear-gradient(transparent, rgba(0,0,0,0.85)); }
+        .front h2 { position: relative; z-index: 2; font-size: clamp(28px, 4vw, 40px); color: var(--yellow); text-shadow: 3px 3px 0 var(--black); margin: 0; }
+
+        .back { background: var(--yellow); color: var(--black); transform: rotateY(180deg); justify-content: center; text-align: center; }
+        .back h3 { font-size: 30px; border-bottom: 4px solid var(--black); margin-bottom: 10px; }
+
+        /*  IMAGES */
+        .char-mark .front { background-image: url('https://variety.com/wp-content/uploads/2020/04/Invincible.jpg?w=1000&h=563&crop=1'); }
+        .char-nolan .front { background-image: url('https://wallpaperaccess.com/full/6154806.png'); }
+        .char-oliver .front { background-image: url('https://static0.srcdn.com/wordpress/wp-content/uploads/2026/03/oliver-flexing-in-his-kid-omni-man-suit-in-invincible-season-4.jpg?w=1600&h=900&fit=crop'); }
+        .char-allen .front { background-image: url('https://static0.srcdn.com/wordpress/wp-content/uploads/2024/03/invincible-allen-the-alien-season-2-anissa-4.jpg?w=1200&h=900&fit=crop'); }
+
+        /* FOOTER */
+        footer {
+            background: var(--black);
+            padding: 60px 20px;
+            text-align: center;
+            border-top: 5px solid var(--yellow);
+        }
+
+        @media (max-width: 768px) {
+            .audio-controls { bottom: 10px; left: 10px; scale: 0.8; }
+            .hero { background-attachment: scroll; }
+        }
